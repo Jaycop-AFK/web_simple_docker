@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Container</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .color-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 60px; /* Adjust for navbar height */
+        }
+
+        .color-box {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .color-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="text-format.html">formatting</a>
+        <a href="index.html">home</a>
+        <a href="color.html">Contact</a>
+    </div>
+    <div class="color-container">
+        <div class="color-box" style="background-color: #ff6b6b;" onclick="showColorModal('#ff6b6b')"></div>
+        <div class="color-box" style="background-color: #ff8e53;" onclick="showColorModal('#ff8e53')"></div>
+        <div class="color-box" style="background-color: #f5f7fa;" onclick="showColorModal('#f5f7fa')"></div>
+        <div class="color-box" style="background-color: #c3cfe2;" onclick="showColorModal('#c3cfe2')"></div>
+        <div class="color-box" style="background-color: #333;" onclick="showColorModal('#333')"></div>
+        <div class="color-box" style="background-color: #555;" onclick="showColorModal('#555')"></div>
+    </div>
+
+    <div id="colorModal" class="modal">
+        <div class="modal-content" id="modalContent">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="colorCode"></p>
+        </div>
+    </div>
+
+    <script>
+        function showColorModal(color) {
+            var modal = document.getElementById("colorModal");
+            var colorCode = document.getElementById("colorCode");
+            var modalContent = document.getElementById("modalContent");
+            colorCode.textContent = "Color Code: " + color;
+            modalContent.style.backgroundColor = color;
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("colorModal");
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById("colorModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
